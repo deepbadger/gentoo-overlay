@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>maintainer@gentoo.org</email>
+		<name>Gentoo Maintainer</name>
+	</maintainer>
+	<longdescription lang="en">
+		MAX is a desktop client for communication and collaboration.
+		Supports messaging, voice/video calls, and document collaboration.
+		This package installs prebuilt binaries from the official RPM repository.
+	</longdescription>
+	<longdescription lang="ru">
+		MAX — десктопный клиент для коммуникации и совместной работы.
+		Поддерживает обмен сообщениями, голосовые/видеозвонки
+		и совместную работу над документами.
+		Пакет устанавливает предсобранные бинарные файлы из
+		официального RPM-репозитория.
+	</longdescription>
+	<upstream>
+		<remote-id type="homepage">https://max.ru</remote-id>
+	</upstream>
+</pkgmetadata>

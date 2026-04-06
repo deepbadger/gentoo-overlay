@@ -8,6 +8,8 @@ Gentoo overlay with ebuilds for proprietary Russian and remote-desktop software.
 |---|---|
 | `net-im/max` | [MAX](https://max.ru/) — desktop client for communication and collaboration |
 | `app-office/r7-office` | [R7-Office](https://r7-office.ru/) — office suite compatible with Microsoft Office formats |
+| `dev-util/gigaide` | [GigaIDE CE](https://gigaide.ru/) — IDE for JVM languages by SberTech (based on IntelliJ IDEA) |
+| `net-misc/nomachine` | ⚠️ [NoMachine](https://www.nomachine.com/) — **не работает, не рекомендуется к установке** |
 
 ## Installation
 

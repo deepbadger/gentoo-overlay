@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>maintainer@gentoo.org</email>
+		<name>Gentoo Maintainer</name>
+	</maintainer>
+	<longdescription lang="en">
+		GigaIDE Community Edition is a proprietary IDE for JVM languages
+		(Java, Kotlin, Scala, Groovy) developed by SberTech based on
+		JetBrains IntelliJ IDEA Community Edition. It bundles its own
+		JetBrains Runtime (JBR) and requires no system Java installation.
+		This package installs prebuilt binaries from the official gigaide.ru
+		download server.
+	</longdescription>
+	<longdescription lang="ru">
+		GigaIDE Community Edition — проприетарная среда разработки для
+		JVM-языков (Java, Kotlin, Scala, Groovy) от SberTech на базе
+		JetBrains IntelliJ IDEA Community Edition. Включает JetBrains
+		Runtime (JBR), системная Java не требуется. Пакет устанавливает
+		предсобранные бинарные файлы с официального сервера gigaide.ru.
+	</longdescription>
+	<upstream>
+		<remote-id type="homepage">https://gigaide.ru</remote-id>
+	</upstream>
+</pkgmetadata>

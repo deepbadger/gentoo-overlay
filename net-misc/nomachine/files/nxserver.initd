@@ -1,0 +1,37 @@
+#!/sbin/openrc-run
+
+description="NoMachine NX Server"
+pidfile="/run/nxserver.pid"
+
+command="/etc/NX/nxserver"
+command_args="--daemon"
+command_user="nx:nx"
+command_background=true
+
+output_log="/usr/NX/var/log/nxserver-stdout.log"
+error_log="/usr/NX/var/log/nxserver-stderr.log"
+
+depend() {
+	need net
+	use sshd
+}
+
+stop() {
+	ebegin "Stopping ${RC_SVCNAME}"
+	/etc/NX/nxserver --shutdown >/dev/null 2>&1
+	eend $?
+}
+
+status() {
+	local nxpid="/usr/NX/var/run/server.pid"
+	if [ -f "${nxpid}" ]; then
+		local pid
+		pid=$(cat "${nxpid}")
+		if kill -0 "${pid}" 2>/dev/null; then
+			einfo "${RC_SVCNAME} is running (PID: ${pid})"
+			return 0
+		fi
+	fi
+	einfo "${RC_SVCNAME} is not running"
+	return 3
+}

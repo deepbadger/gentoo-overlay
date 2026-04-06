@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>maintainer@gentoo.org</email>
+		<name>Gentoo Maintainer</name>
+	</maintainer>
+	<longdescription lang="en">
+		NoMachine is a remote desktop application that provides fast and
+		secure access to a physical or virtual Linux desktop. It includes
+		both server and client functionality, allowing remote connections
+		via the proprietary NX protocol on port 4000.
+		This package installs prebuilt binaries from the official tar.gz archive.
+	</longdescription>
+	<longdescription lang="ru">
+		NoMachine — приложение для удалённого доступа к рабочему столу,
+		обеспечивающее быстрый и безопасный доступ к физическому или
+		виртуальному рабочему столу Linux. Включает функциональность
+		сервера и клиента, позволяя устанавливать удалённые соединения
+		по проприетарному протоколу NX на порту 4000.
+		Пакет устанавливает предсобранные бинарные файлы из
+		официального tar.gz-архива.
+	</longdescription>
+	<upstream>
+		<bugs-to>https://www.nomachine.com/support</bugs-to>
+	</upstream>
+</pkgmetadata>

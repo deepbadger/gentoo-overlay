@@ -1,0 +1,14 @@
+DEFINED_PHASES=install postinst postrm preinst prerm
+DESCRIPTION=Fast and secure remote desktop access
+EAPI=8
+HOMEPAGE=https://www.nomachine.com/
+IDEPEND=dev-util/desktop-file-utils x11-misc/shared-mime-info
+INHERIT=desktop pam xdg
+KEYWORDS=~amd64
+LICENSE=nomachine
+RDEPEND=acct-group/nx acct-user/nx dev-libs/glib:2 net-misc/openssh sys-auth/polkit || ( sys-libs/libxcrypt[compat] sys-libs/glibc[crypt(-)] ) x11-apps/xauth
+RESTRICT=bindist mirror strip
+SLOT=0
+SRC_URI=amd64? ( https://download.nomachine.com/download/9.3/Linux/nomachine_9.3.7_1_x86_64.tar.gz )
+_eclasses_=desktop	26d57169ca094c04be416993844ec8bc	toolchain-funcs	5195689ff6a73b0e789acfa09d4fbcb9	flag-o-matic	fd3558f73f6503093adee69adf41020d	pam	b56d0c9c20fc5b553f13c8ae165a10a5	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	xdg	3ef49a87c52c8b77c476351195dfe575
+_md5_=cb71ad8d6bdb1be5bbbd91b2215d93f1

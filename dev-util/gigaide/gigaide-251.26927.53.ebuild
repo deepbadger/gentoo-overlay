@@ -66,13 +66,13 @@ src_install() {
 
 	# Тарболл не содержит системного .desktop файла — создаём его
 	make_desktop_entry \
-		/opt/gigaide/bin/idea.sh \
+		/opt/gigaide/bin/idea \
 		"GigaIDE Community Edition" \
 		gigaide \
 		"Development;IDE;" \
 		"StartupWMClass=jetbrains-idea-ce\nStartupNotify=true"
 
-	dosym ../../opt/gigaide/bin/idea.sh /usr/bin/gigaide
+	dosym ../../opt/gigaide/bin/idea /usr/bin/gigaide
 }
 
 pkg_postinst() {

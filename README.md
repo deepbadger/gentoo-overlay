@@ -37,6 +37,18 @@ Then sync:
 emerge --sync badger
 ```
 
+### Removal
+
+```bash
+eselect repository remove -f badger
+```
+
+Or if added manually — remove `/etc/portage/repos.conf/badger.conf` and delete the repository directory:
+
+```bash
+rm -rf /var/db/repos/badger
+```
+
 ## Usage
 
 ```bash

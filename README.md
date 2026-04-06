@@ -14,7 +14,7 @@ Gentoo overlay with ebuilds for proprietary Russian and remote-desktop software.
 ### Using eselect-repository (recommended)
 
 ```bash
-eselect repository add badger git https://github.com/deepbadger/badger-overlay.git
+eselect repository add badger git https://github.com/deepbadger/gentoo-overlay.git
 emerge --sync badger
 ```
 
@@ -26,7 +26,7 @@ Create `/etc/portage/repos.conf/badger.conf`:
 [badger]
 location = /var/db/repos/badger
 sync-type = git
-sync-uri = https://github.com/deepbadger/badger-overlay.git
+sync-uri = https://github.com/deepbadger/gentoo-overlay.git
 masters = gentoo
 auto-sync = yes
 ```

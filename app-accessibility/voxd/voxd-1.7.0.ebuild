@@ -23,9 +23,6 @@ RESTRICT="mirror"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
-# NB: модуль python-sounddevice не упакован в основном дереве Gentoo —
-# его потребуется поставить пользователем самому (pip --user или venv).
-# См. соответствующий elog в pkg_postinst.
 RDEPEND="
 	${PYTHON_DEPS}
 	$(python_gen_cond_dep '
@@ -37,6 +34,7 @@ RDEPEND="
 		dev-python/pyqtgraph[${PYTHON_USEDEP}]
 		dev-python/pyyaml[${PYTHON_USEDEP}]
 		dev-python/requests[${PYTHON_USEDEP}]
+		dev-python/sounddevice[${PYTHON_USEDEP},numpy]
 		dev-python/tqdm[${PYTHON_USEDEP}]
 	')
 	media-libs/portaudio
@@ -120,13 +118,7 @@ pkg_postinst() {
 	xdg_pkg_postinst
 	udev_reload
 
-	elog "Модуль python-sounddevice отсутствует в основном дереве Gentoo."
-	elog "Без него VOXD не сможет писать звук с микрофона. Поставьте его"
-	elog "локально, например через pip:"
-	elog "       python -m pip install --user --break-system-packages sounddevice"
-	elog "(или через user venv, если такой подход вам ближе)."
-	elog ""
-	elog "Также VOXD требует в рантайме:"
+	elog "VOXD требует в рантайме:"
 	elog " - whisper-cli (whisper.cpp): первый запуск 'voxd --setup'"
 	elog "   автоматически скачает/соберёт его в ~/.local/bin/whisper-cli"
 	elog " - доступ к /dev/uinput для ydotoold — добавьте пользователя"

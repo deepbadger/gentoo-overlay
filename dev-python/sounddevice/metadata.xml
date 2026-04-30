@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>deepbadger@gmail.com</email>
+		<name>Dmitry</name>
+	</maintainer>
+	<longdescription lang="en">
+		python-sounddevice provides bindings for the PortAudio library and
+		convenience functions to play and record NumPy arrays containing
+		audio signals. The sounddevice module is available for Linux, macOS
+		and Windows; on Linux it uses the system libportaudio at runtime via
+		CFFI. Audio data can be exchanged as raw bytes or as NumPy arrays.
+	</longdescription>
+	<longdescription lang="ru">
+		python-sounddevice — биндинги к библиотеке PortAudio и удобные
+		функции для проигрывания и записи аудио из массивов NumPy.
+		На Linux модуль подключает системный libportaudio во время импорта
+		через CFFI. Аудио передаётся как сырые байты или массивы NumPy.
+	</longdescription>
+	<use>
+		<flag name="numpy">Enable NumPy-based convenience APIs (<code>play()</code>, <code>rec()</code>, <code>playrec()</code>)</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">spatialaudio/python-sounddevice</remote-id>
+		<remote-id type="pypi">sounddevice</remote-id>
+	</upstream>
+</pkgmetadata>

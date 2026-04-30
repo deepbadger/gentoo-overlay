@@ -1,0 +1,16 @@
+#!/sbin/openrc-run
+# Per-user supervisor for ydotoold — input-event injection daemon
+# used by VOXD on Wayland sessions.
+# Enable for your user with:
+#     rc-update --user add voxd-ydotoold default
+#     rc-service --user voxd-ydotoold start
+
+description="ydotool user daemon (used by VOXD)"
+
+command="/usr/bin/voxd-ydotoold"
+command_background=true
+pidfile="${XDG_RUNTIME_DIR}/voxd-ydotoold.pid"
+
+supervisor="supervise-daemon"
+respawn_delay=1
+respawn_max=0

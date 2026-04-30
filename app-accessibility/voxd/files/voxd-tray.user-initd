@@ -1,0 +1,20 @@
+#!/sbin/openrc-run
+# Per-user supervisor for VOXD tray mode.
+# Enable for your user with:
+#     rc-update --user add voxd-tray default
+#     rc-service --user voxd-tray start
+
+description="VOXD voice typing — tray mode"
+
+command="/usr/bin/voxd"
+command_args="--tray"
+command_background=true
+pidfile="${XDG_RUNTIME_DIR}/voxd-tray.pid"
+
+supervisor="supervise-daemon"
+respawn_delay=2
+respawn_max=0
+
+depend() {
+	after voxd-ydotoold
+}

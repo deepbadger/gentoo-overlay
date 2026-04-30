@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>maintainer@gentoo.org</email>
+		<name>Gentoo Maintainer</name>
+	</maintainer>
+	<longdescription lang="en">
+		VOXD is an open-source voice-typing helper for Linux. It runs in
+		the background and lets the user dictate into any focused
+		application: press a hotkey to start recording, press again to
+		stop, and the speech is transcribed locally with whisper.cpp and
+		typed via xdotool/ydotool. Provides CLI, Qt GUI, system-tray and
+		voice-activity-detection (Flux) modes, with optional local LLM
+		post-processing through llama.cpp. Runs entirely on CPU; no GPU
+		or network is required after the model is downloaded.
+		This package installs the prebuilt upstream Debian artefact and
+		wires it to the system Python toolchain.
+	</longdescription>
+	<longdescription lang="ru">
+		VOXD — open-source-помощник голосового ввода для Linux. Работает
+		фоном и позволяет диктовать в любое окно: нажатие хоткея
+		запускает запись, повторное нажатие останавливает её, после чего
+		речь распознаётся локально через whisper.cpp и «печатается» в
+		активное приложение через xdotool/ydotool. Поддерживает CLI, Qt
+		GUI, режим в системном трее и режим с детектором голосовой
+		активности (Flux); опционально использует llama.cpp для
+		пост-обработки текста локальной LLM. Работает полностью на CPU,
+		после загрузки модели подключение к сети не требуется.
+		Пакет устанавливает upstream-сборку Debian и привязывает её к
+		системному Python-окружению Gentoo.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">jakovius/voxd</remote-id>
+	</upstream>
+</pkgmetadata>

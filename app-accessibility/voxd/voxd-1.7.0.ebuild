@@ -6,15 +6,11 @@ EAPI=8
 # Нижняя граница задаётся PYTHON_COMPAT'ом dev-python/pyqtgraph (>=3.12).
 PYTHON_COMPAT=( python3_{12..14} )
 
-inherit desktop python-single-r1 systemd udev unpacker xdg
+inherit desktop python-single-r1 systemd udev xdg
 
 DESCRIPTION="Voice typing for Linux: dictate into any app via whisper.cpp"
 HOMEPAGE="https://github.com/jakovius/voxd"
-SRC_URI="
-	amd64? ( https://github.com/jakovius/voxd/releases/download/v${PV}/voxd_${PV}-1_amd64.deb )
-	arm64? ( https://github.com/jakovius/voxd/releases/download/v${PV}/voxd_${PV}-1_arm64.deb )
-"
-S="${WORKDIR}"
+SRC_URI="https://github.com/jakovius/voxd/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 
 # MIT — собственно исходники приложения.
 # all-rights-reserved — иконки/лого (см. ASSETS_LICENSE: разрешено
@@ -23,7 +19,7 @@ LICENSE="MIT all-rights-reserved"
 SLOT="0"
 KEYWORDS="~amd64 ~arm64"
 IUSE="systemd"
-RESTRICT="bindist mirror strip"
+RESTRICT="mirror"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
@@ -51,14 +47,8 @@ RDEPEND="
 	|| ( x11-misc/xdotool x11-misc/ydotool )
 "
 
-QA_PREBUILT="*"
-
 pkg_setup() {
 	python-single-r1_pkg_setup
-}
-
-src_unpack() {
-	unpack_deb ${A}
 }
 
 src_prepare() {
@@ -68,7 +58,7 @@ src_prepare() {
 	# самостоятельно бутстрапит venv с pip-зависимостями. На Gentoo Python
 	# и все модули предоставлены через RDEPEND, поэтому переписываем wrapper
 	# под фиксированный интерпретатор, выбранный python-single-r1.
-	cat > usr/bin/voxd <<-EOF || die
+	cat > packaging/voxd.wrapper <<-EOF || die
 		#!/usr/bin/env bash
 		set -euo pipefail
 		APPDIR=/opt/voxd
@@ -91,15 +81,20 @@ src_prepare() {
 src_install() {
 	# Python-приложение целиком ложится в /opt/voxd (как ожидает wrapper).
 	dodir /opt/voxd
-	cp -a opt/voxd/. "${ED}"/opt/voxd/ || die
+	cp -a src "${ED}"/opt/voxd/ || die
+	# pyproject.toml читается в рантайме, чтобы определить версию,
+	# когда git/metadata недоступны — повторяем поведение nfpm-пакета.
+	insinto /opt/voxd
+	doins pyproject.toml
 
 	exeinto /usr/bin
-	doexe usr/bin/voxd usr/bin/voxd-ydotoold
+	newexe packaging/voxd.wrapper voxd
+	doexe packaging/voxd-ydotoold
 
 	# systemd user-юниты — только при USE=systemd.
 	if use systemd; then
-		systemd_douserunit usr/lib/systemd/user/voxd-tray.service
-		systemd_douserunit usr/lib/systemd/user/ydotoold.service
+		systemd_douserunit packaging/voxd-tray.service
+		systemd_douserunit packaging/ydotoold.service
 	fi
 
 	# OpenRC user-services (sys-apps/openrc >= 0.62.6, стабильно с 2025-09).
@@ -110,10 +105,10 @@ src_install() {
 	newexe "${FILESDIR}"/voxd-tray.user-initd voxd-tray
 
 	# udev-правило: доступ к /dev/uinput из группы input для ydotoold.
-	udev_dorules etc/udev/rules.d/99-uinput.rules
+	udev_dorules packaging/99-uinput.rules
 
 	# Тот же файл иконки, который upstream-installer кладёт в hicolor.
-	newicon -s 512 opt/voxd/src/voxd/assets/voxd-1.png voxd.png
+	newicon -s 512 src/voxd/assets/voxd-1.png voxd.png
 
 	# Системные .desktop-записи (upstream создаёт их только в $HOME).
 	make_desktop_entry "voxd --gui" "VOXD" voxd "AudioVideo;Utility;Accessibility;"

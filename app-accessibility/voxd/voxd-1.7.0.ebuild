@@ -12,8 +12,10 @@ MY_PV="${PV}+mir.1"
 
 DESCRIPTION="Voice typing for Linux: dictate into any app via whisper.cpp"
 HOMEPAGE="https://github.com/deepbadger/voxd"
-SRC_URI="https://github.com/deepbadger/voxd/releases/download/v${PV}%2Bmir.1/voxd-${MY_PV}.tar.gz -> ${P}+mir.1.tar.gz"
-S="${WORKDIR}/voxd-${MY_PV}"
+# Релизный ассет форка — урезанный sdist без packaging/ и Python-источников,
+# поэтому забираем автогенерируемый архив тега (имя каталога: '+' → '-').
+SRC_URI="https://github.com/deepbadger/voxd/archive/refs/tags/v${PV}%2Bmir.1.tar.gz -> ${P}+mir.1.tar.gz"
+S="${WORKDIR}/voxd-${PV}-mir.1"
 
 # MIT — собственно исходники приложения.
 # all-rights-reserved — иконки/лого (см. ASSETS_LICENSE: разрешено

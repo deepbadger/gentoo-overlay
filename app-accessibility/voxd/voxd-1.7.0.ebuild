@@ -8,9 +8,12 @@ PYTHON_COMPAT=( python3_{12..14} )
 
 inherit desktop python-single-r1 systemd udev xdg
 
+MY_PV="${PV}+mir.1"
+
 DESCRIPTION="Voice typing for Linux: dictate into any app via whisper.cpp"
-HOMEPAGE="https://github.com/jakovius/voxd"
-SRC_URI="https://github.com/jakovius/voxd/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="https://github.com/deepbadger/voxd"
+SRC_URI="https://github.com/deepbadger/voxd/releases/download/v${PV}%2Bmir.1/voxd-${MY_PV}.tar.gz -> ${P}+mir.1.tar.gz"
+S="${WORKDIR}/voxd-${MY_PV}"
 
 # MIT — собственно исходники приложения.
 # all-rights-reserved — иконки/лого (см. ASSETS_LICENSE: разрешено
@@ -42,7 +45,7 @@ RDEPEND="
 	net-misc/curl
 	virtual/udev
 	|| ( x11-misc/xclip x11-misc/xsel gui-apps/wl-clipboard )
-	|| ( x11-misc/xdotool x11-misc/ydotool )
+	|| ( x11-misc/ydotool x11-misc/xdotool )
 "
 
 pkg_setup() {

@@ -14,7 +14,10 @@ DESCRIPTION="Voice typing for Linux: dictate into any app via whisper.cpp"
 HOMEPAGE="https://github.com/deepbadger/voxd"
 # Релизный ассет форка — урезанный sdist без packaging/ и Python-источников,
 # поэтому забираем автогенерируемый архив тега (имя каталога: '+' → '-').
-SRC_URI="https://github.com/deepbadger/voxd/archive/refs/tags/v${PV}%2Bmir.1.tar.gz -> ${P}+mir.1.tar.gz"
+SRC_URI="https://github.com/deepbadger/voxd/archive/refs/tags/v${PV}%2Bmir.1.tar.gz -> ${P}+mir.1.tar.gz
+	gigachat? (
+		https://github.com/deepbadger/voxd/releases/download/v${PV}%2Bmir.1/voxd-${PV}+mir.1-gigachat-wheels.tar.gz
+	)"
 S="${WORKDIR}/voxd-${PV}-mir.1"
 
 # MIT — собственно исходники приложения.
@@ -23,7 +26,7 @@ S="${WORKDIR}/voxd-${PV}-mir.1"
 LICENSE="MIT all-rights-reserved"
 SLOT="0"
 KEYWORDS="~amd64 ~arm64"
-IUSE="systemd"
+IUSE="gigachat systemd"
 RESTRICT="mirror"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
@@ -48,6 +51,14 @@ RDEPEND="
 	virtual/udev
 	|| ( x11-misc/xclip x11-misc/xsel gui-apps/wl-clipboard )
 	|| ( x11-misc/ydotool x11-misc/xdotool )
+"
+
+BDEPEND="
+	gigachat? (
+		$(python_gen_cond_dep '
+			dev-python/pip[${PYTHON_USEDEP}]
+		')
+	)
 "
 
 pkg_setup() {
@@ -93,6 +104,30 @@ src_install() {
 	exeinto /usr/bin
 	newexe packaging/voxd.wrapper voxd
 	doexe packaging/voxd-ydotoold
+
+	# Изолированный bundle с langchain-gigachat и его транзитивными deps:
+	# распаковываем wheels из релизного ассета и `pip install --target` в
+	# приватный site-packages — в системный Python ничего не утекает.
+	# aipp.run_gigachat_aipp подменяет sys.path только перед импортом
+	# langchain_gigachat, поэтому bundle-версии pydantic/httpx/langsmith
+	# не затеняют системные пакеты для остального кода voxd.
+	if use gigachat; then
+		local sp="${ED}/opt/voxd/aipp/gigachat/site-packages"
+		dodir /opt/voxd/aipp/gigachat
+		"${EPYTHON}" -m pip install \
+			--no-index \
+			--no-compile \
+			--no-warn-script-location \
+			--disable-pip-version-check \
+			--target="${sp}" \
+			--find-links="${WORKDIR}/wheels" \
+			'langchain-gigachat>=0.5,<0.6' \
+			|| die "pip install of gigachat bundle failed"
+		# Удаляем ненужные исполняемые скрипты, которые pip кладёт в
+		# bin/ внутри --target — wrapper их не использует.
+		rm -rf "${sp}/bin" || die
+		python_optimize "${sp}"
+	fi
 
 	# systemd user-юниты — только при USE=systemd.
 	if use systemd; then
@@ -142,6 +177,16 @@ pkg_postinst() {
 		elog "Альтернатива через systemd user-юниты (USE=systemd):"
 		elog "       systemctl --user enable --now ydotoold.service"
 		elog "       systemctl --user enable --now voxd-tray.service"
+	fi
+	if use gigachat; then
+		elog ""
+		elog "AI-постпроцессинг через GigaChat (USE=gigachat):"
+		elog "       export GIGACHAT_CREDENTIALS='<base64 client_id:secret>'"
+		elog "       # затем в \${XDG_CONFIG_HOME:-~/.config}/voxd/config.yaml:"
+		elog "       #   aipp_provider: gigachat"
+		elog "Bundle с langchain-gigachat и зависимостями развёрнут в"
+		elog "/opt/voxd/aipp/gigachat/site-packages — системный Python не"
+		elog "затрагивается."
 	fi
 }
 

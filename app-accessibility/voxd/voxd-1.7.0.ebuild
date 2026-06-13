@@ -8,17 +8,21 @@ PYTHON_COMPAT=( python3_{12..14} )
 
 inherit desktop python-single-r1 systemd udev xdg
 
-MY_PV="${PV}+mir.1"
+# Downstream-ревизия форка ('+mir.N'). Не входит в Gentoo-версию PV (она равна
+# upstream-версии), поэтому держим суффикс одной переменной — её достаточно
+# поменять при обновлении на следующую mir-сборку.
+MIR_SUFFIX="mir.3"
+MY_PV="${PV}+${MIR_SUFFIX}"
 
 DESCRIPTION="Voice typing for Linux: dictate into any app via whisper.cpp"
 HOMEPAGE="https://github.com/deepbadger/voxd"
 # Релизный ассет форка — урезанный sdist без packaging/ и Python-источников,
 # поэтому забираем автогенерируемый архив тега (имя каталога: '+' → '-').
-SRC_URI="https://github.com/deepbadger/voxd/archive/refs/tags/v${PV}%2Bmir.1.tar.gz -> ${P}+mir.1.tar.gz
+SRC_URI="https://github.com/deepbadger/voxd/archive/refs/tags/v${PV}%2B${MIR_SUFFIX}.tar.gz -> ${P}+${MIR_SUFFIX}.tar.gz
 	gigachat? (
-		https://github.com/deepbadger/voxd/releases/download/v${PV}%2Bmir.1/voxd-${PV}+mir.1-gigachat-wheels.tar.gz
+		https://github.com/deepbadger/voxd/releases/download/v${PV}%2B${MIR_SUFFIX}/voxd-${MY_PV}-gigachat-wheels.tar.gz
 	)"
-S="${WORKDIR}/voxd-${PV}-mir.1"
+S="${WORKDIR}/voxd-${PV}-${MIR_SUFFIX}"
 
 # MIT — собственно исходники приложения.
 # all-rights-reserved — иконки/лого (см. ASSETS_LICENSE: разрешено

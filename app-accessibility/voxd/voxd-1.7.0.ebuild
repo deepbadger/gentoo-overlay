@@ -11,7 +11,7 @@ inherit desktop python-single-r1 systemd udev xdg
 # Downstream-ревизия форка ('+mir.N'). Не входит в Gentoo-версию PV (она равна
 # upstream-версии), поэтому держим суффикс одной переменной — её достаточно
 # поменять при обновлении на следующую mir-сборку.
-MIR_SUFFIX="mir.4"
+MIR_SUFFIX="mir.5"
 MY_PV="${PV}+${MIR_SUFFIX}"
 
 DESCRIPTION="Voice typing for Linux: dictate into any app via whisper.cpp"

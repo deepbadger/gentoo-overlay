@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>maintainer@gentoo.org</email>
+		<name>Gentoo Maintainer</name>
+	</maintainer>
+	<longdescription lang="en">
+		GOST (GO Simple Tunnel) is a multi-protocol proxy and tunnel written
+		in Go. It accepts HTTP, SOCKS4/5 and Shadowsocks, supports proxy
+		chains, TLS/WebSocket/gRPC/QUIC/KCP/SSH transports, port forwarding
+		and transparent proxying. This package installs the prebuilt static
+		binary from the official GitHub releases.
+	</longdescription>
+	<longdescription lang="ru">
+		GOST (GO Simple Tunnel) — многопротокольный прокси и туннель на Go.
+		Принимает HTTP, SOCKS4/5 и Shadowsocks, поддерживает цепочки прокси,
+		транспорты TLS/WebSocket/gRPC/QUIC/KCP/SSH, проброс портов и
+		прозрачное проксирование. Пакет устанавливает предсобранный
+		статический бинарный файл из официальных релизов GitHub.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">go-gost/gost</remote-id>
+	</upstream>
+</pkgmetadata>

@@ -1,0 +1,26 @@
+#!/sbin/openrc-run
+# Copyright 1999-2026 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+description="GO Simple Tunnel"
+
+: "${GOST_CONFIG:=/etc/gost/gost.yml}"
+
+command="/usr/bin/gost"
+command_args="-C ${GOST_CONFIG} ${GOST_OPTS}"
+command_user="gost:gost"
+supervisor="supervise-daemon"
+respawn_delay=5
+
+depend() {
+	need net
+	after firewall
+}
+
+start_pre() {
+	if [ ! -r "${GOST_CONFIG}" ]; then
+		eerror "Config ${GOST_CONFIG} not found"
+		eerror "See /etc/gost/gost.yml.example"
+		return 1
+	fi
+}

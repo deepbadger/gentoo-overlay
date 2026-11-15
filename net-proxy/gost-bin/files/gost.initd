@@ -10,7 +10,6 @@ command="/usr/bin/gost"
 command_args="-C ${GOST_CONFIG} ${GOST_OPTS}"
 command_user="gost:gost"
 supervisor="supervise-daemon"
-respawn_delay=5
 
 depend() {
 	need net

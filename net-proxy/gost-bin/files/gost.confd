@@ -1,0 +1,5 @@
+# Path to the gost YAML configuration
+#GOST_CONFIG="/etc/gost/gost.yml"
+
+# Extra command line options, e.g. "-D" for debug logging
+#GOST_OPTS=""

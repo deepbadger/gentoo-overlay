@@ -1,0 +1,26 @@
+# gost v3: локальный HTTP-прокси 127.0.0.1:8118 → внешний SOCKS5.
+# Документация: https://gost.run/en/reference/configuration/file/
+services:
+  - name: http-to-socks5
+    addr: 127.0.0.1:8118
+    handler:
+      type: http
+      chain: upstream
+    listener:
+      type: tcp
+
+chains:
+  - name: upstream
+    hops:
+      - name: hop-0
+        nodes:
+          - name: socks5
+            addr: socks-host.example:1080
+            connector:
+              type: socks5
+              # Удалите блок auth, если авторизация не нужна
+              auth:
+                username: user
+                password: pass
+            dialer:
+              type: tcp

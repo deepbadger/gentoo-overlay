@@ -1,0 +1,14 @@
+BDEPEND=virtual/pkgconfig
+DEFINED_PHASES=install postinst
+DESCRIPTION=GO Simple Tunnel — multi-protocol proxy and tunnel (HTTP, SOCKS5, TLS, WS, QUIC...)
+EAPI=8
+HOMEPAGE=https://gost.run/ https://github.com/go-gost/gost
+INHERIT=systemd
+KEYWORDS=-* ~amd64 ~arm64
+LICENSE=MIT
+RDEPEND=acct-group/gost acct-user/gost
+RESTRICT=bindist mirror strip
+SLOT=0
+SRC_URI=amd64? ( https://github.com/go-gost/gost/releases/download/v3.3.3/gost_3.3.3_linux_amd64.tar.gz -> gost-bin-3.3.3-amd64.tar.gz ) arm64? ( https://github.com/go-gost/gost/releases/download/v3.3.3/gost_3.3.3_linux_arm64.tar.gz -> gost-bin-3.3.3-arm64.tar.gz )
+_eclasses_=systemd	a964c0cbe818b5729da1dbfcee5be861	toolchain-funcs	58a918e3a42d0156f010dcfd43725be5
+_md5_=9463edf8df38a5ab544549d03efb6cbf

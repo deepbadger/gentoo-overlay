@@ -9,7 +9,7 @@ DESCRIPTION="GigaIDE Community Edition — IDE for JVM languages by SberTech (ba
 HOMEPAGE="https://gigaide.ru/"
 SRC_URI="https://gigaide.ru/downloadlast/gigaideCE-${PV}.tar.gz"
 
-LICENSE="GigaIDE-EULA"
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 RESTRICT="bindist mirror strip"

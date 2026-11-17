@@ -9,7 +9,7 @@ DESCRIPTION="GIGA IDE — IDE for JVM languages by SberTech (based on IntelliJ I
 HOMEPAGE="https://gigaide.ru/"
 SRC_URI="https://gigaide.ru/downloadlast/${P}.tar.gz"
 
-LICENSE="GigaIDE-EULA"
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 RESTRICT="bindist mirror strip"

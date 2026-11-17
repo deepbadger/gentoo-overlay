@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>maintainer@gentoo.org</email>
+		<name>Gentoo Maintainer</name>
+	</maintainer>
+	<longdescription lang="en">
+		Yandex Browser is a Chromium-based web browser from Yandex.
+		This package installs prebuilt binaries from the official DEB repository.
+		Based on the www-client/yandex-browser ebuild from the GURU repository.
+	</longdescription>
+	<longdescription lang="ru">
+		Яндекс Браузер — веб-браузер от Яндекса на основе Chromium.
+		Пакет устанавливает предсобранные бинарные файлы из
+		официального DEB-репозитория.
+		Основан на ebuild www-client/yandex-browser из репозитория GURU.
+	</longdescription>
+	<use>
+		<flag name="qt6">Install the Qt6 UI shim library</flag>
+	</use>
+	<upstream>
+		<remote-id type="homepage">https://browser.yandex.ru</remote-id>
+	</upstream>
+</pkgmetadata>

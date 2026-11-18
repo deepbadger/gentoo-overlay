@@ -11,7 +11,7 @@ inherit desktop python-single-r1 systemd udev xdg
 # Downstream-ревизия форка ('+mir.N'). Не входит в Gentoo-версию PV (она равна
 # upstream-версии), поэтому держим суффикс одной переменной — её достаточно
 # поменять при обновлении на следующую mir-сборку.
-MIR_SUFFIX="mir.5"
+MIR_SUFFIX="mir.6"
 MY_PV="${PV}+${MIR_SUFFIX}"
 
 DESCRIPTION="Voice typing for Linux: dictate into any app via whisper.cpp"
@@ -44,6 +44,7 @@ RDEPEND="
 		dev-python/pyperclip[${PYTHON_USEDEP}]
 		dev-python/pyqt6[${PYTHON_USEDEP},gui,widgets]
 		dev-python/pyqtgraph[${PYTHON_USEDEP}]
+		dev-python/pysocks[${PYTHON_USEDEP}]
 		dev-python/pyyaml[${PYTHON_USEDEP}]
 		dev-python/requests[${PYTHON_USEDEP}]
 		dev-python/sounddevice[${PYTHON_USEDEP},numpy]
@@ -165,6 +166,9 @@ pkg_postinst() {
 	elog "VOXD требует в рантайме:"
 	elog " - whisper-cli (whisper.cpp): первый запуск 'voxd --setup'"
 	elog "   автоматически скачает/соберёт его в ~/.local/bin/whisper-cli"
+	elog " - для движка Parakeet (asr_engine: parakeet) нужен parakeet-cli из"
+	elog "   whisper.cpp (цель сборки parakeet-cli): положите его в PATH либо"
+	elog "   укажите путь в 'Settings → Recognition' / parakeet_binary"
 	elog " - доступ к /dev/uinput для ydotoold — добавьте пользователя"
 	elog "   в группу input:  gpasswd -a <user> input"
 	elog " - на Wayland: emerge x11-misc/ydotool, daemon ydotoold нужно"
@@ -176,6 +180,10 @@ pkg_postinst() {
 	elog "       rc-update --user add voxd-tray default"
 	elog "       rc-service --user voxd-ydotoold start"
 	elog "       rc-service --user voxd-tray start"
+	elog ""
+	elog "AI-постпроцессинг через облачных провайдеров: ключ API и прокси"
+	elog "(HTTP/SOCKS5) задаются в 'Settings → AI processing'; ключ хранится"
+	elog "в ~/.config/voxd/keys.env."
 	if use systemd; then
 		elog ""
 		elog "Альтернатива через systemd user-юниты (USE=systemd):"

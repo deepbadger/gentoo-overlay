@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>maintainer@gentoo.org</email>
+		<name>Gentoo Maintainer</name>
+	</maintainer>
+	<longdescription lang="en">
+		ocproxy is a user-level SOCKS and port forwarding proxy for
+		OpenConnect based on lwIP. Used with openconnect --script-tun, it
+		gives access to the VPN through local port forwards (-L) and a
+		SOCKS5 proxy (-D) without creating a tun device, changing routes
+		or DNS, or requiring root. The vpnns helper runs applications in a
+		separate network namespace attached to the VPN.
+	</longdescription>
+	<longdescription lang="ru">
+		ocproxy — SOCKS-прокси и проброс портов для OpenConnect, работающие
+		в пространстве пользователя на основе lwIP. Вместе с
+		openconnect --script-tun даёт доступ в VPN через локальные пробросы
+		портов (-L) и SOCKS5-прокси (-D) без создания tun-интерфейса,
+		изменения маршрутов и DNS и без прав root. Утилита vpnns запускает
+		приложения в отдельном сетевом пространстве имён, подключённом к VPN.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">cernekee/ocproxy</remote-id>
+	</upstream>
+</pkgmetadata>

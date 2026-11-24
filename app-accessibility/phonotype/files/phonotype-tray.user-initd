@@ -1,0 +1,20 @@
+#!/sbin/openrc-run
+# Per-user supervisor for Phonotype tray mode.
+# Enable for your user with:
+#     rc-update --user add phonotype-tray default
+#     rc-service --user phonotype-tray start
+
+description="Phonotype voice typing — tray mode"
+
+command="/usr/bin/phonotype"
+command_args="--tray"
+command_background=true
+pidfile="${XDG_RUNTIME_DIR}/phonotype-tray.pid"
+
+supervisor="supervise-daemon"
+respawn_delay=2
+respawn_max=0
+
+depend() {
+	after phonotype-ydotoold
+}

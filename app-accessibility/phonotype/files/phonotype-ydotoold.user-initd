@@ -1,0 +1,16 @@
+#!/sbin/openrc-run
+# Per-user supervisor for ydotoold — input-event injection daemon
+# used by Phonotype on Wayland sessions.
+# Enable for your user with:
+#     rc-update --user add phonotype-ydotoold default
+#     rc-service --user phonotype-ydotoold start
+
+description="ydotool user daemon (used by Phonotype)"
+
+command="/usr/bin/phonotype-ydotoold"
+command_background=true
+pidfile="${XDG_RUNTIME_DIR}/phonotype-ydotoold.pid"
+
+supervisor="supervise-daemon"
+respawn_delay=1
+respawn_max=0

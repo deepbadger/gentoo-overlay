@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>maintainer@gentoo.org</email>
+		<name>Gentoo Maintainer</name>
+	</maintainer>
+	<longdescription lang="en">
+		Phonotype is a voice-typing helper for Linux. It sits in the system
+		tray: press a hotkey to start recording, press again to stop, and
+		the speech is transcribed locally (whisper.cpp or NVIDIA Parakeet)
+		and typed into the focused application via ydotool/xdotool. An
+		optional LLM pass (OpenRouter, OpenAI, Anthropic, xAI, GigaChat,
+		Ollama or any OpenAI-compatible endpoint, with HTTP/SOCKS5 proxy
+		support) can clean up the dictation. Independent continuation of
+		VOXD 1.7.
+	</longdescription>
+	<longdescription lang="ru">
+		Phonotype — помощник голосового ввода для Linux. Живёт в системном
+		трее: нажатие хоткея запускает запись, повторное — останавливает,
+		речь распознаётся локально (whisper.cpp или NVIDIA Parakeet) и
+		печатается в активное окно через ydotool/xdotool. Опциональная
+		обработка текста LLM (OpenRouter, OpenAI, Anthropic, xAI, GigaChat,
+		Ollama или любой OpenAI-совместимый сервер, с поддержкой
+		HTTP/SOCKS5-прокси). Независимое продолжение VOXD 1.7.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">deepbadger/phonotype</remote-id>
+	</upstream>
+</pkgmetadata>
